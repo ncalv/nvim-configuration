@@ -303,6 +303,9 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
+  nmap('<leader>of', vim.diagnostic.open_float, '[O]pen diagnostic in a [F]loating window')
+  nmap('<leader>d[', vim.diagnostic.goto_prev, 'Go to previous diagnostic message')
+  nmap('<leader>d]', vim.diagnostic.goto_next, 'Go to next diagnostic message')
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
