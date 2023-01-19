@@ -170,7 +170,7 @@ require('Comment').setup()
 
 -- configure hop (plugin similar to easymotion)
 local hop = require('hop')
-vim.keymap.set('n', 'f', hop.hint_words, {remap=true})
+vim.keymap.set('n', '<leader>f', hop.hint_words, {remap=true})
 hop.setup()
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
@@ -219,7 +219,7 @@ vim.keymap.set('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer]' })
 
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' }) -- respect .gitignore
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
