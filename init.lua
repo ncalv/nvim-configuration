@@ -190,6 +190,8 @@ require('gitsigns').setup {
     topdelete = { text = '‾' },
     changedelete = { text = '~' },
   },
+  current_line_blame = true,
+  current_line_blame_opts = { delay = 300 }
 }
 
 -- [[ Configure Telescope ]]
@@ -311,7 +313,11 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
-  nmap('<leader>of', vim.diagnostic.open_float, '[O]pen diagnostic in a [F]loating window')
+  local open_float_with_source = function()
+    vim.diagnostic.open_float({ source = true })
+  end
+
+  nmap('<leader>of', open_float_with_source, '[O]pen diagnostic in a [F]loating window')
   nmap('<leader>d[', vim.diagnostic.goto_prev, 'Go to previous diagnostic message')
   nmap('<leader>d]', vim.diagnostic.goto_next, 'Go to next diagnostic message')
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
@@ -351,7 +357,7 @@ require('mason').setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua', 'gopls' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua', 'gopls', 'eslint' }
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
