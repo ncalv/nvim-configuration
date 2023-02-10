@@ -171,6 +171,7 @@ require('Comment').setup()
 -- configure hop (plugin similar to easymotion)
 local hop = require('hop')
 vim.keymap.set('n', '<leader>f', hop.hint_words, {remap=true})
+vim.keymap.set('n', '<leader>c', hop.hint_char1, {remap=true})
 hop.setup()
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
