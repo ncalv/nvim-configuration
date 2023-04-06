@@ -358,7 +358,7 @@ require('mason').setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua', 'gopls', 'eslint' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls', 'gopls', 'eslint'}
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
@@ -376,6 +376,11 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+require('lspconfig')['gdscript'].setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
 -- Turn on lsp status information
 require('fidget').setup()
 
@@ -386,7 +391,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-require('lspconfig').sumneko_lua.setup {
+require('lspconfig')['lua_ls'].setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
